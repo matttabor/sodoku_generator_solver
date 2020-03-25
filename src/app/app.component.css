@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+  font-family: Calibri, sans-serif;
+}
+
+td {
+  height:35px;
+  width:35px;
+  border:1px solid;
+  text-align:center;
+}
+td:first-child {
+  border-left:solid;
+}
+td:nth-child(3n) {
+  border-right:solid ;
+}
+tr:first-child {
+  border-top:solid;
+}
+tr:nth-child(3n) td {
+  border-bottom:solid ;
+}

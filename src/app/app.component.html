@@ -1,0 +1,53 @@
+<router-outlet></router-outlet>
+<div class="container-fuild">
+  <div class="row">
+    <div class="col-md-3 p-4">
+      <div class="row">
+        <div class="w-100 p-3">
+          <button id="generateButton" class="btn btn-success mb-2 btn-block" (click)="generateGame()">Generate</button>
+          <button id="startButton" class="btn btn-success mb-2 btn-block" (click)="solve()">Solve</button>
+        </div>
+        <!-- <form id="gameForm" class="col w-100">
+          <div class="row mb-2">
+            <div class="col">
+              <input id="rows" class="form-control" placeholder="rows" type="number" required min="10" maxValue="70">
+            </div>
+            <div class="col">
+              <input id="cols" class="form-control" placeholder="columns" type="number" required min="10" maxValue="70">
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <input id="percent" class="form-control" placeholder="percent alive" type="number" required min="10" maxValue="70">
+            </div>
+          </div>
+        </form>-->
+
+      </div>
+      <div class="accordion w-100">
+        <div class="card">
+          <div class="card-header">
+            <h6 class="mb-0">Conways Game of Life</h6>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Soduku is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9×9 grid with
+              digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called
+              "boxes", "blocks", or "regions") contain all of the digits from 1 to 9. The puzzle setter provides a
+              partially completed grid, which for a well-posed puzzle has a single solution.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 p-4">
+      <div class="wrapper container-fluid">
+        <table>
+          <tr *ngFor="let row of board;">
+            <td class="field" *ngFor="let field of row">{{field != 0 ? field : ""}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
