@@ -9,6 +9,9 @@ td {
   border:1px solid;
   text-align:center;
 }
+
+
+
 td:first-child {
   border-left:solid;
 }
