@@ -5,6 +5,7 @@ input {
   width:25px;
   text-align: center;
   font-size: 1.25em;
+  background-color: transparent;
 }
 
 
@@ -45,4 +46,8 @@ input[type=number] {
 .normal {
   font-weight: 100;
   color: #3D3D3D;
+}
+
+.filled-cell {
+  background-color: #DAD9D9;
 }

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Cell } from './cell/cell';
+import { Cell } from "./cell/cell";
 
 @Component({
   selector: "app-root",
@@ -9,7 +9,7 @@ import { Cell } from './cell/cell';
 export class AppComponent {
   title = "soduku";
 
-   board: Cell[][];
+  board: Cell[][];
 
   constructor() {
     this.initializeEmptyBoard();
@@ -17,9 +17,9 @@ export class AppComponent {
 
   initializeEmptyBoard() {
     this.board = [];
-    for(let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
       this.board[i] = [];
-      for(let j = 0; j < 9; j++) {
+      for (let j = 0; j < 9; j++) {
         this.board[i][j] = new Cell(0);
       }
     }
@@ -28,28 +28,60 @@ export class AppComponent {
   generateGame(): void {
     this.initializeEmptyBoard();
 
-    let numFilledCells = 28;
-    while(numFilledCells >=0 ) {
-      let row = Math.floor(Math.random() * 9);
-      let col = Math.floor(Math.random() * 9);
-
-      if(this.board[row][col].value == 0){
-        let valid = false;
-        while(!valid) {
-          let value = Math.floor(Math.random() * 10);
-          if(this.isValid(value, row, col)) {
-            this.board[row][col].value = value;
-            this.board[row][col].isLocked = true;
-            valid = true;
-          }
-        }
-        numFilledCells--;
-      }
-    }
-
+    // fill diagonal 3x3 matrices first
+    this.fillDiagonal();
+    this.solve();
+    // remove n number of elements to make the board playable
+    this.removeRandomKCells();
   }
 
-solve(): boolean {
+  removeRandomKCells() {
+    let count = 45; // this should be an input from the user to change dificulty maybe
+
+    while (count >= 0) {
+      let index = Math.floor(Math.random() * 81);
+      var row = index % 9;
+      var col = Math.floor(index / 9);
+
+      if(this.board[row][col].value != 0){
+        this.board[row][col].value = 0;
+        this.board[row][col].isLocked = false;
+        count--;
+      }
+    }
+  }
+
+  fillDiagonal() {
+    for (let i = 0; i < 9; i = i + 3) {
+      this.fillBox(i, i);
+    }
+  }
+
+  // Fill a 3 x 3 matrix.
+  fillBox(row: number, col: number): void {
+    let num;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        do {
+          num = Math.floor(Math.random() * 9 + 1);
+        } while (!this.unUsedInBox(row, col, num));
+
+        this.board[row + i][col + j].value = num;
+        this.board[row + i][col + j].isLocked = true;
+      }
+    }
+  }
+
+  // Returns false if given 3 x 3 block contains num.
+  unUsedInBox(rowStart: number, colStart: number, num: number): boolean {
+    for (let i = 0; i < 3; i++)
+      for (let j = 0; j < 3; j++)
+        if (this.board[rowStart + i][colStart + j].value == num) return false;
+
+    return true;
+  }
+
+  solve(): boolean {
     var nextEmptyCell = this.findNextEmpty();
 
     if (nextEmptyCell == null) {
@@ -59,13 +91,14 @@ solve(): boolean {
     for (let i = 1; i < 10; i++) {
       if (this.isValid(i, nextEmptyCell.row, nextEmptyCell.col)) {
         this.board[nextEmptyCell.row][nextEmptyCell.col].value = i;
+        this.board[nextEmptyCell.row][nextEmptyCell.col].isLocked = true;
 
         if (this.solve()) {
-
           return true;
         }
         //await delay(300);
         this.board[nextEmptyCell.row][nextEmptyCell.col].value = 0;
+        this.board[nextEmptyCell.row][nextEmptyCell.col].isLocked = false;
       }
     }
 
