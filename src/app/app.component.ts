@@ -26,9 +26,9 @@ export class AppComponent {
   }
 
   generateGame(): void {
-     this.initializeEmptyBoard();
+    this.initializeEmptyBoard();
 
-    let numFilledCells = 25;
+    let numFilledCells = 28;
     while(numFilledCells >=0 ) {
       let row = Math.floor(Math.random() * 9);
       let col = Math.floor(Math.random() * 9);
@@ -39,6 +39,7 @@ export class AppComponent {
           let value = Math.floor(Math.random() * 10);
           if(this.isValid(value, row, col)) {
             this.board[row][col].value = value;
+            this.board[row][col].isLocked = true;
             valid = true;
           }
         }

@@ -36,3 +36,13 @@ input[type=number] {
   display:inline-block;
   float: none
 }
+
+.bold {
+  font-weight: bold;
+  color: #000000;
+}
+
+.normal {
+  font-weight: 100;
+  color: #3D3D3D;
+}

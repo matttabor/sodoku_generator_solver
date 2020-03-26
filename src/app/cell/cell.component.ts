@@ -9,8 +9,6 @@ import { Cell } from './cell';
 export class CellComponent implements OnInit {
 
   @Input() cell : Cell;
-  @Input() isLocked: boolean;
-
 
   constructor() {
 

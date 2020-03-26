@@ -28,10 +28,9 @@
       <div class="wrapper container-fluid">
         <table>
           <tr *ngFor="let row of board;">
-            <ng-container *ngFor="let field of row">
-              <td class="field" style="white-space:nowrap"><app-cell [cell]=field></app-cell></td>
+            <ng-container *ngFor="let cell of row">
+              <td class="field" style="white-space:nowrap"><app-cell [cell]=cell></app-cell></td>
             </ng-container>
-
           </tr>
         </table>
       </div>
