@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Cell } from './cell';
 
 @Component({
@@ -12,9 +11,10 @@ export class CellComponent implements OnInit {
   @Input() cell : Cell;
   @Input() isLocked: boolean;
 
-  // cellValue: FormControl;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit(): void {
     // this.cellValue = new FormControl('');

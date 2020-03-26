@@ -1,9 +1,10 @@
 input {
   border-width:0px;
   border:none;
-  height:20px;
-  width:20px;
+  height:25px;
+  width:25px;
   text-align: center;
+  font-size: 1.25em;
 }
 
 
@@ -21,12 +22,13 @@ input[type=number] {
 .small-input {
   border-width:0px;
   border:none;
-  height:13px;
+  height:100%;
   width:12px;
   text-align: start;
   padding: 0;
   margin: 0;
   color: #A5A5A5;
+  font-size: .24em;
 }
 
 
